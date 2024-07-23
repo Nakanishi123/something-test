@@ -2,16 +2,19 @@ on: workflow_dispatch
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      FILE_TEMP_NAME: __4rPMDBdWUnHr__
     steps:
       - uses: actions/checkout@v4
       - run: |
-          echo "Hello, World!" >  hello.txt
+          echo "Hello, World!" >  ${{env.FILE_TEMP_NAME}}
       - uses: actions/checkout@v4
         with:
           ref: kara
       - run: |
+          mv ${{env.FILE_TEMP_NAME}} hello.txt
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add hello.txt
           git commit -m "Bot added hello.txt"
           git push
