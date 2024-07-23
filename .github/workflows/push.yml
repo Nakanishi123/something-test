@@ -5,8 +5,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          git switch kara
           echo "Hello, World!" >  hello.txt
+      - uses: actions/checkout@v4
+        with:
+          ref: kara
+      - run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add hello.txt
